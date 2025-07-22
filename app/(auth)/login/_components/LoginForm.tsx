@@ -67,7 +67,7 @@ export function LoginForm() {
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
-                <Button disabled={githubPending} onClick={signInWithGithub} className="w-full" variant={"outline"}>
+                <Button disabled={githubPending} onClick={signInWithGithub} className="w-full" variant={"default"}>
                     {githubPending ? (
                         <>
                             <Loader className="size-4 animate-spin"/>
