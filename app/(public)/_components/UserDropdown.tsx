@@ -37,7 +37,7 @@ export default function UserDropdown() {
     if (!session) {
     return (
       <>
-        <Link href={"/login"} className={buttonVariants({variant:"secondary"})}>
+        <Link href={"/login"} className={buttonVariants({variant:"ghost"})}>
           Login
         </Link>
         <Link href={"/login"} className={buttonVariants()}>
