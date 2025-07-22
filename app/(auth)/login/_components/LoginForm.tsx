@@ -22,6 +22,10 @@ export function LoginForm() {
                 provider: "github",
                 callbackURL: "/",
                 fetchOptions: {
+                    onSuccess: () => {
+                        toast.success("Signed in with Github successfully");
+                        router.push("/");
+                    },
                     onError: () => {
                         toast.error("Internal Server Error")
                     }

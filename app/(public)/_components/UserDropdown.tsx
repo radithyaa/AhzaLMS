@@ -6,6 +6,7 @@ import {
   Home,
   LayoutDashboardIcon,
   LogOutIcon,
+  User,
 } from "lucide-react"
 
 import {
@@ -25,46 +26,33 @@ import {
 } from "@/components/ui/dropdown-menu"
 import Link from "next/link"
 import { authClient } from "@/lib/auth-client"
-import { useRouter } from "next/navigation"
-import { toast } from "sonner"
+import { useSignOut } from "@/hooks/use-signout"
 
 export default function UserDropdown() {
     const {data: session, isPending} = authClient.useSession()
-    const router = useRouter();
+    const {name, email, image} = session?.user || {}
+    const handleSignOut = useSignOut()
 
-    async function signOut(){
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/")
-          toast.success("Signed out successfully");
-        },
-        onError: () => {
-          toast.error("Failed to sign out, please try again");
-        }
-      }
-    })
-}
     if (isPending) {return null}
     if (!session) {
     return (
-    <>
+      <>
         <Link href={"/login"} className={buttonVariants({variant:"secondary"})}>
-            Login
-            </Link>
-            <Link href={"/login"} className={buttonVariants()}>
-                Get Started
-            </Link>
-            </>);
+          Login
+        </Link>
+        <Link href={"/login"} className={buttonVariants()}>
+          Get Started
+        </Link>
+      </>);
     }
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="h-full p-0 hover:bg-transparent">
+        <Button variant="ghost" className=" p-0 hover:bg-transparent">
           <Avatar>
-            <AvatarImage src={session.user.image ?? undefined} alt="Profile image" />
-            <AvatarFallback>{session?.user.name}</AvatarFallback>
+            <AvatarImage src={image?? `https://avatar.vercel.sh/${name || email}`} alt={name} />
+            <AvatarFallback><User/></AvatarFallback>
           </Avatar>
           <ChevronDownIcon
             size={16}
@@ -76,10 +64,10 @@ export default function UserDropdown() {
       <DropdownMenuContent align="end" className="max-w-64">
         <DropdownMenuLabel className="flex min-w-0 flex-col">
           <span className="text-foreground truncate text-sm font-medium">
-            {session.user.name}
+            {name}
           </span>
           <span className="text-muted-foreground truncate text-xs font-normal">
-            {session.user.email}
+            {email}
           </span>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
@@ -104,7 +92,7 @@ export default function UserDropdown() {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={signOut}>
+        <DropdownMenuItem onClick={handleSignOut}>
           <LogOutIcon size={16} className="opacity-60" aria-hidden="true" />
           <span>Logout</span>
         </DropdownMenuItem>
