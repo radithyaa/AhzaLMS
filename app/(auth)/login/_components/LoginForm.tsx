@@ -59,10 +59,10 @@ export function LoginForm() {
     return(
         <Card>
             <CardHeader>
-                <CardTitle className="text-xl">
+                <CardTitle className="text-xl text-center">
                     Welcome back!
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-center mb-2">
                     Login with your Github or Email Account
                 </CardDescription>
             </CardHeader>

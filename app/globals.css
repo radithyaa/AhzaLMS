@@ -69,12 +69,12 @@
   --accent-foreground: oklch(0.9851 0 0);
   --destructive: oklch(0.3958 0.1331 25.7230);
   --destructive-foreground: oklch(0.9851 0 0);
-  --border: oklch(0.2739 0.0055 286.0326);
-  --input: oklch(0.2739 0.0055 286.0326);
+  --border: oklch(37.259% 0.00511 286.034);
+  --input: oklch(42.24% 0.00989 285.906);
   --ring: oklch(0.8790 0.1534 91.6054);
   --chart-1: oklch(0.8790 0.1534 91.6054);
   --chart-2: oklch(0.4461 0.0263 256.8018);
-  --chart-3: oklch(0.6231 0.1880 259.8145);
+  --chart-3: oklch(18.934% 0.00774 248.304);
   --chart-4: oklch(0.7090 0.1592 293.5412);
   --chart-5: oklch(0.6559 0.2118 354.3084);
   --sidebar: oklch(0.2103 0.0059 285.8852);
@@ -163,6 +163,17 @@
 body {
   letter-spacing: var(--tracking-normal);
 }
+
+::selection {
+  background-color: rgba(255, 197, 7, 0.178);
+  color: black;
+}
+.dark ::selection {
+  background-color: rgba(255, 228, 139, 0.134);
+  color: white;
+}
+
+
 
 @layer base {
   * {
