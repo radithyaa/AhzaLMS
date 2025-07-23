@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -165,11 +166,11 @@ body {
 }
 
 ::selection {
-  background-color: rgba(255, 197, 7, 0.178);
+  background-color: rgba(255, 197, 7, 0.314);
   color: black;
 }
 .dark ::selection {
-  background-color: rgba(255, 228, 139, 0.134);
+  background-color: rgba(255, 228, 139, 0.412);
   color: white;
 }
 
