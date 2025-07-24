@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import TextEditor from "@/components/text-editor/TextEditor";
+import { Uploader } from "@/components/file-uploader/Uploader";
 
 export default function CreateCoursePage() {
     const form = useForm<z.infer<typeof courseSchema>>({
@@ -107,7 +108,8 @@ export default function CreateCoursePage() {
                         <FormItem className="w-full">
                             <FormLabel>Thumbnail Image</FormLabel>
                             <FormControl>
-                                <Input placeholder="Thumbnail url" {...field}/>
+                                <Uploader {...field}/>
+                                {/* <Input placeholder="Thumbnail url" {...field}/> */}
                             </FormControl>
                             <FormMessage/>
                         </FormItem>
@@ -213,8 +215,11 @@ export default function CreateCoursePage() {
                             </FormItem>
                         )}
                     />
-                    <Button>
+                    <Button className="hidden md:flex">
                         Create Course <PlusIcon className="ml-1" size={1}/>
+                    </Button>
+                     <Button className="w-full md:hidden">
+                        Create Course
                     </Button>
                 </form>
             </Form>

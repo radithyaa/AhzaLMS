@@ -87,7 +87,7 @@ export default function MenuBar({ editor }: iAppProps) {
   return (
     <div className="border border-t-0 border-x-0 border-input rounded-t-lg p-2 overflow-hidden bg-card flex flex-wrap gap-1 items-center">
       <TooltipProvider>
-        <div className="flex flex-wrap gap-1">
+        <div className="flex flex-wrap  gap-1">
           <MenuToggle
             icon={<Bold />}
             active={editor.isActive("bold")}
