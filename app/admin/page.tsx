@@ -9,7 +9,7 @@ export default function AdminPage() {
     <>
         <SectionCards />
         <div className="px-4 lg:px-6">
-            {/* <ChartAreaInteractive /> */}
+        <ChartAreaInteractive />
         </div>
         <DataTable data={data} />
     </>

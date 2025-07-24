@@ -33,7 +33,7 @@ export const courseSchema = z.object({
       const plain = extractTextFromJson(parsed);
       return plain.trim().length >= 50;
     } catch (e) {
-      return false;
+      return e;
     }
     }, {
         error: "Description must be at least 50 characters long",

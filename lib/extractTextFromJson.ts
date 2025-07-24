@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export default function extractTextFromJson(json: any): string {
   if (!json || typeof json !== "object") return "";
 

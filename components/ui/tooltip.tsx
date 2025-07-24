@@ -7,13 +7,14 @@ import { cn } from "@/lib/utils"
 
 function TooltipProvider({
   delayDuration = 500,
-  skipDelayDuration = 100,
+  skipDelayDuration = 1000,
   ...props
 }: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
   return (
     <TooltipPrimitive.Provider
       data-slot="tooltip-provider"
       delayDuration={delayDuration}
+      skipDelayDuration={skipDelayDuration}
       {...props}
     />
   )

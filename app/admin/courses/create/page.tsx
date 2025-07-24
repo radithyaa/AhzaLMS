@@ -31,7 +31,7 @@ export default function CreateCoursePage() {
     })
 
     function onSubmit(values: z.infer<typeof courseSchema>){
-
+        console.log(values)
     }
   return (
     <>

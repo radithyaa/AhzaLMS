@@ -22,7 +22,6 @@ import {
   ListIcon,
   ListOrdered,
   Redo,
-  Strikethrough,
   Underline,
   Undo,
 } from "lucide-react";
@@ -49,16 +48,15 @@ interface HistoryButtonProps {
 
 const MenuToggle = ({ icon, active, onToggle, tooltip, variant = "outline" }: MenuToggleProps) => (
   <Tooltip>
-    <TooltipTrigger>
+    <TooltipTrigger asChild>
       <Toggle
-        asChild
         size="sm"
-        className="size-8 rounded-xs"
+        className={`size-8 rounded-xs ${active? "bg-input text-accent-foreground" : ""}`}
         variant={variant}
         pressed={active}
         onPressedChange={onToggle}
       >
-        {icon}
+          {icon}
       </Toggle>
     </TooltipTrigger>
     <TooltipContent>{tooltip}</TooltipContent>
@@ -69,7 +67,7 @@ const HistoryButton = ({ icon, onClick, disabled, tooltip }: HistoryButtonProps)
   <Tooltip>
     <TooltipTrigger asChild>
       <Button
-        className="hover:bg-muted hover:text-muted-foreground"
+        className="text-muted-foreground"
         size="sm"
         variant="ghost"
         type="button"
@@ -132,7 +130,6 @@ export default function MenuBar({ editor }: iAppProps) {
 
           <div className="w-px h-6 bg-border mx-2"></div>
 
-          <div className="flex flex-wrap gap-1">
           <MenuToggle
             icon={<ListIcon />}
             active={editor.isActive("bulletList")}
@@ -151,12 +148,9 @@ export default function MenuBar({ editor }: iAppProps) {
             onToggle={() => editor.chain().focus().toggleLink().run()}
             tooltip="Link"
           />
-          </div>
-        </div>
-
+          
         <div className="w-px h-6 bg-border mx-2"></div>
 
-        <div className="flex flex-wrap gap-1">
           <MenuToggle
             icon={<AlignLeft />}
             active={editor.isActive({ textAlign: "left" })}
@@ -175,11 +169,9 @@ export default function MenuBar({ editor }: iAppProps) {
             onToggle={() => editor.chain().focus().setTextAlign("right").run()}
             tooltip="Align Right (⌘+Shift+R)"
           />
-        </div>
 
         <div className="w-px h-6 bg-border mx-2"></div>
 
-        <div className="flex flex-wrap gap-1">
           <HistoryButton
             icon={<Undo />}
             onClick={() => editor.chain().focus().undo().run()}
@@ -193,6 +185,8 @@ export default function MenuBar({ editor }: iAppProps) {
             tooltip="Redo (⌘+Shift+Z)"
           />
         </div>
+
+
       </TooltipProvider>
     </div>
   );
